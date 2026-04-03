@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Producto (El corazón del sistema)
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  sku         String   @unique
+  description String?
+  price       Decimal  @db.Decimal(18, 2)
+  stock       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  
+  movements   StockMovement[]
+}
+
+// Categorías para organizar productos
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+}
+
+// Historial de Movimientos (Entradas y Salidas)
+// Esto es lo que hace al sistema "profesional"
+model StockMovement {
+  id        String   @id @default(uuid())
+  quantity  Int
+  type      String   // "IN" (Entrada) o "OUT" (Salida)
+  reason    String?  // Ej: "Venta", "Devolución", "Ajuste"
+  createdAt DateTime @default(now())
+
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+}
