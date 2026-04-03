@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📦 Sistema ERP de Gestión de Inventarios
 
-## Getting Started
+Un sistema de gestión empresarial (ERP Lite) profesional construido con el stack moderno de **Next.js**, enfocado en el manejo eficiente de inventarios, movimientos de stock y análisis de datos en tiempo real.
 
-First, run the development server:
+## 🚀 Tecnologías Principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **Framework:** [Next.js 15+](https://nextjs.org) (App Router)
+*   **Lenguaje:** [TypeScript](https://typescriptlang.org)
+*   **Base de Datos:** [Microsoft SQL Server](https://microsoft.com) (LocalDB)
+*   **ORM:** [Prisma 5.21.0](https://prisma.io)
+*   **Estilos:** [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://shadcn.com)
+*   **Validación:** [Zod](https://zod.dev)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Requisitos Previos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Antes de comenzar, asegúrate de tener instalado:
+*   [Node.js 18+](https://nodejs.org)
+*   [SQL Server Management Studio (SSMS)](https://microsoft.com) o Azure Data Studio.
+*   Una instancia de SQL Server LocalDB corriendo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Configuración del Proyecto
 
-## Learn More
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com
+    cd mi-sistema-erp
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Configurar variables de entorno:**
+    Crea un archivo `.env` en la raíz basado en `.env.example`:
+    ```env
+    DATABASE_URL="sqlserver://localhost;instanceName=MSSQLLocalDB;database=MiSistemaERP;integratedSecurity=true;trustServerCertificate=true;"
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4.  **Sincronizar la base de datos con Prisma:**
+    ```bash
+    npx prisma db push
+    ```
 
-## Deploy on Vercel
+5.  **Iniciar el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 Estructura del Proyecto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   `/src/app`: Rutas y páginas del sistema.
+*   `/src/components`: Componentes de UI reutilizables y lógica de negocio.
+*   `/src/lib`: Configuraciones de clientes (Prisma, Auth, etc.).
+*   `/src/actions`: Funciones del lado del servidor (Server Actions) para mutaciones de datos.
+*   `/prisma`: Esquema de la base de datos y migraciones.
+
+## 📝 Roadmap (Próximos Pasos)
+- [ ] Implementar Dashboard de Stock Crítico.
+- [ ] Creación de productos y categorías.
+- [ ] Historial de movimientos de inventario (Entradas/Salidas).
+- [ ] Autenticación con roles (Admin/Operador).
